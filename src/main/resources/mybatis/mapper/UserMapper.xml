@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- JAVA와 연결할 Mapper 파일 설정 -->
+<mapper namespace="RestAPIServer.demo.mapper.UserMapper">
+    <!-- 카카오로그인으로 사용자 정보 가져오기 -->
+    <select id="test" resultType="UserDTO">
+        SELECT
+        USER_EMAIL,
+        USER_ID,
+        USER_NAME,
+        USER_ADDR
+        FROM
+        USER_INFO
+        WHERE
+        USER_EMAIL=#{user_email};
+    </select>
+
+</mapper>
