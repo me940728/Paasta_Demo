@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tymeleaf.org">
+<meta property="og:image" content="https://code-study.tistory.com/images/img_share.png">
+<head>
+    <title>APIS</title>
+</head>
+<body>
+<!--  name은 자바로 가고, id는 자바스크립트로 간다.-->
+<form action="/loginPage/loginProc" name="formTag" onsubmit="return doLoginCheck(this);" method="post">
+    <div> id :
+        <input type="text" name="user_id" id="user_id">
+    </div>
+    <div> pwd :
+        <input type="password" name="password" id="password">
+    </div>
+    <button type="submit">로그인</button>
+    <button type="button"  onclick="location.href='/kakaoGetAuthToken'">카카오로그인</button>
+</form>
+</body>
+<script src="/js/checkAlert.js"></script>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RedirectPage</title>
+
+    <script th:inline="javascript">
+	        alert("[[${msg}]]")
+	        location.href = "[[${url}]]"
+    </script>
+</head>
+<body>
+
+</body>
+</html>
