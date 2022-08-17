@@ -1,7 +1,7 @@
 package RestAPIServer.demo.controller;
 
 import RestAPIServer.demo.dto.UserInfoDTO;
-import RestAPIServer.demo.service.IUserLoginService;
+import RestAPIServer.demo.service.UserLoginService;
 import RestAPIServer.demo.util.CmmUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,7 @@ import java.util.Map;
 @Controller
 public class UserLoginController {
     @Resource(name = "UserLoginService")
-    private IUserLoginService userLoginService;
+    private UserLoginService userLoginService;
 
     /* 단순 로그인 페이지를 리턴  */
     @GetMapping(value = "/loginPage")
@@ -70,7 +70,7 @@ public class UserLoginController {
         String url = forKakao;
 
         model.addAttribute("msg", msg);
-        model.addAttribute("url", url); // 완성된 호출 url을 jsp에서 처리하도록 리다이렉팅
+        model.addAttribute("url", url);
 
         log.info(this.getClass().getName() + ".kakaoLogin End");
         return "/redirect";

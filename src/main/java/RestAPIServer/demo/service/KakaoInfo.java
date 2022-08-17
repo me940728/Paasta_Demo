@@ -1,6 +1,6 @@
 package RestAPIServer.demo.service;
 
-public interface IKakaoInfo {
+public interface KakaoInfo {
     //=====================================기본 정보 ==============================================================================
     // String Redirect_URI = "http://www.detectiongas.com/kakaoLogin.do"; // 리다이렉트 URI(Cloud Deploy)
     final String Redirect_URI = "http://localhost:8080/kakaoLogin"; // 리다이렉트 URI(local용)

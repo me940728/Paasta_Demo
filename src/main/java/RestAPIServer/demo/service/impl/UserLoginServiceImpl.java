@@ -1,9 +1,9 @@
 package RestAPIServer.demo.service.impl;
 
 import RestAPIServer.demo.dto.UserInfoDTO;
-import RestAPIServer.demo.service.IKakaoInfo;
-import RestAPIServer.demo.service.IKakaoLoginService;
-import RestAPIServer.demo.service.IUserLoginService;
+import RestAPIServer.demo.service.KakaoInfo;
+import RestAPIServer.demo.service.KakaoLoginService;
+import RestAPIServer.demo.service.UserLoginService;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -23,7 +23,7 @@ import java.util.Map;
  */
 @Slf4j
 @Service("UserLoginService")
-public class UserLoginServiceImpl implements IUserLoginService, IKakaoLoginService, IKakaoInfo {
+public class UserLoginServiceImpl implements UserLoginService, KakaoLoginService, KakaoInfo {
    // @Autowired
     //private UserLoginMapper userLoginMapper;
     // => 유저 로그인을 위한 메서드
@@ -57,7 +57,8 @@ public class UserLoginServiceImpl implements IUserLoginService, IKakaoLoginServi
     @Override
     public String getAuthCode() {
         log.info(this.getClass().getName() + "...getAuthCode For Kakao Server Start");
-        String authCode = SampleRequest + RESTAPI_KEY + "&redirect_uri=" + Redirect_URI + "&response_type=code"; // 최종으로 카카오로 보낼 주소
+        String authCode = SampleRequest + RESTAPI_KEY + "&redirect_uri=" + Redirect_URI; // 최종으로 카카오로 보낼 주소
+        //log.info("authCode :: " + authCode);
         log.info(this.getClass().getName() + "...getAuthCode For Kakao Server End");
         return authCode;
     }

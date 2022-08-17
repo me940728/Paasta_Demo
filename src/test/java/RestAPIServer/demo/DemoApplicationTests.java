@@ -7,7 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class DemoApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void 친구목록불러오기() {
+
 	}
 
 }
