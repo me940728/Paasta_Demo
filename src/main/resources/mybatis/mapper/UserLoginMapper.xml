@@ -12,7 +12,9 @@
         FROM
             USER_INFO
         WHERE
-            USER_EMAIL=#{user_email};
+            USER_ID=#{user_id}
+        AND
+            PASSWORD=#{password}
     </select>
 
 </mapper>

@@ -25,7 +25,7 @@ import java.util.Map;
 @Slf4j
 @Controller
 public class UserLoginController {
-    @Resource(name = "UserLoginService")
+    @Resource(name = "UserLoginServiceImpl")
     private UserLoginService userLoginService;
 
     /* 단순 로그인 페이지를 리턴  */

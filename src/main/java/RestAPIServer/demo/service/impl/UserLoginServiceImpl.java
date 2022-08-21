@@ -1,6 +1,7 @@
 package RestAPIServer.demo.service.impl;
 
 import RestAPIServer.demo.dto.UserInfoDTO;
+import RestAPIServer.demo.mapper.UserLoginMapper;
 import RestAPIServer.demo.service.KakaoInfo;
 import RestAPIServer.demo.service.KakaoLoginService;
 import RestAPIServer.demo.service.UserLoginService;
@@ -8,6 +9,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -22,10 +24,10 @@ import java.util.Map;
  * => 유저 로그인 비즈니스 로직
  */
 @Slf4j
-@Service("UserLoginService")
+@Service("UserLoginServiceImpl")
 public class UserLoginServiceImpl implements UserLoginService, KakaoLoginService, KakaoInfo {
-   // @Autowired
-    //private UserLoginMapper userLoginMapper;
+    @Autowired
+    private UserLoginMapper userLoginMapper;
     // => 유저 로그인을 위한 메서드
     @Override
     public int getUserInfo(String user_id, String password) {
@@ -37,13 +39,15 @@ public class UserLoginServiceImpl implements UserLoginService, KakaoLoginService
         pDTO.setPassword(password);
 
         UserInfoDTO uDTO = new UserInfoDTO();
-        // uDTO = userLoginMapper.getUserInfo(pDTO);
+        uDTO = userLoginMapper.getUserInfo(pDTO);
 
         if(uDTO != null) {
             res = 1;
             log.info("user_id : " + uDTO.getUser_id());
             log.info("user_name : " + uDTO.getUser_name());
         }
+        pDTO = null;
+        uDTO = null;
         log.info(this.getClass().getName() + "getUserInfo Service End");
         return res;
     }
@@ -51,7 +55,7 @@ public class UserLoginServiceImpl implements UserLoginService, KakaoLoginService
     @Override
     public UserInfoDTO kakaoLoginProc(UserInfoDTO pDTO) {
         log.info(this.getClass().getName() + "카카오로그인 이메일 -> 서비스 로그인 시도");
-        return new UserInfoDTO();// userLoginMapper.getUserInfoKakao(pDTO);
+        return userLoginMapper.getUserInfoKakao(pDTO);
     }
     // => 카카오 서버로부터 인증코드를 발급받는 메서드
     @Override
