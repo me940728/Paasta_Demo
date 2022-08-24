@@ -1,10 +1,10 @@
-package RestAPIServer.demo.dto;
+package RestAPIServer.demo.data.dto;
 /**
  * @author 최별규
  * @version 1.1 로그인 DTO
  * => 유저 정보를 담는 DTO
  */
-public class UserInfoDTO {
+public class UserInfoDto {
     private String user_email; // 유저 이메일
     private String user_id; // 아이디
     private String password; // 비밀번호

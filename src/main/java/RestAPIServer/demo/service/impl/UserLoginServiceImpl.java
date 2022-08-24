@@ -1,7 +1,7 @@
 package RestAPIServer.demo.service.impl;
 
-import RestAPIServer.demo.dto.UserInfoDTO;
-import RestAPIServer.demo.mapper.UserLoginMapper;
+import RestAPIServer.demo.data.dto.UserInfoDto;
+import RestAPIServer.demo.data.mapper.UserLoginMapper;
 import RestAPIServer.demo.service.KakaoInfo;
 import RestAPIServer.demo.service.KakaoLoginService;
 import RestAPIServer.demo.service.UserLoginService;
@@ -34,11 +34,11 @@ public class UserLoginServiceImpl implements UserLoginService, KakaoLoginService
         log.info(this.getClass().getName() + ".getUserInfo Service Start");
         int res = 0;
 
-        UserInfoDTO pDTO = new UserInfoDTO();
+        UserInfoDto pDTO = new UserInfoDto();
         pDTO.setUser_id(user_id);
         pDTO.setPassword(password);
 
-        UserInfoDTO uDTO = new UserInfoDTO();
+        UserInfoDto uDTO = new UserInfoDto();
         uDTO = userLoginMapper.getUserInfo(pDTO);
 
         if(uDTO != null) {
@@ -53,7 +53,7 @@ public class UserLoginServiceImpl implements UserLoginService, KakaoLoginService
     }
     //=> 카카오 로그인 시도
     @Override
-    public UserInfoDTO kakaoLoginProc(UserInfoDTO pDTO) {
+    public UserInfoDto kakaoLoginProc(UserInfoDto pDTO) {
         log.info(this.getClass().getName() + "카카오로그인 이메일 -> 서비스 로그인 시도");
         return userLoginMapper.getUserInfoKakao(pDTO);
     }

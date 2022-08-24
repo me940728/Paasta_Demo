@@ -1,6 +1,6 @@
 package RestAPIServer.demo.controller;
 
-import RestAPIServer.demo.dto.UserInfoDTO;
+import RestAPIServer.demo.data.dto.UserInfoDto;
 import RestAPIServer.demo.service.UserLoginService;
 import RestAPIServer.demo.util.CmmUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -87,8 +87,8 @@ public class UserLoginController {
         String kakaoEmail = result.get("kakaoEmail").toString();
         log.info("카카오 이메일 : " + kakaoEmail);
 
-        UserInfoDTO pDTO = new UserInfoDTO(); // 값 전달 용
-        UserInfoDTO rDTO = new UserInfoDTO(); // 값 받아오기 용
+        UserInfoDto pDTO = new UserInfoDto(); // 값 전달 용
+        UserInfoDto rDTO = new UserInfoDto(); // 값 받아오기 용
 
         pDTO.setUser_email(kakaoEmail);
         rDTO = userLoginService.kakaoLoginProc(pDTO); // userService에서 MAPPER를 연결하여 값 받아옴
