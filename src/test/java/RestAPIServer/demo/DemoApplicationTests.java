@@ -7,7 +7,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 class DemoApplicationTests {
 
 	@Test
-	void 친구목록불러오기() {
+	void 로그인테스트하기() throws Exception{
+		// Given
+		String admin = "admin";
+		String password = "1234";
+
+		// When
+
+		// Then
 
 	}
 

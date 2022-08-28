@@ -1,7 +1,8 @@
 package RestAPIServer.demo.service.impl;
 
+import RestAPIServer.demo.data.dao.UserLoginDAO;
 import RestAPIServer.demo.data.dto.UserInfoDto;
-import RestAPIServer.demo.data.mapper.UserLoginMapper;
+import RestAPIServer.demo.data.entity.UserInfo;
 import RestAPIServer.demo.service.KakaoInfo;
 import RestAPIServer.demo.service.KakaoLoginService;
 import RestAPIServer.demo.service.UserLoginService;
@@ -26,8 +27,16 @@ import java.util.Map;
 @Slf4j
 @Service("UserLoginServiceImpl")
 public class UserLoginServiceImpl implements UserLoginService, KakaoLoginService, KakaoInfo {
+   // private UserLoginMapper userLoginMapper;
+    private final UserLoginDAO userLoginMapper;
+    /*@Autowired
+    UserLoginServiceImpl(UserLoginMapper userLoginMapper){
+       // this.userLoginMapper = userLoginMapper;
+    }*/
     @Autowired
-    private UserLoginMapper userLoginMapper;
+    UserLoginServiceImpl(UserLoginDAO userLoginDAO){
+        this.userLoginMapper = userLoginDAO;
+    }
     // => 유저 로그인을 위한 메서드
     @Override
     public int getUserInfo(String user_id, String password) {
@@ -38,12 +47,12 @@ public class UserLoginServiceImpl implements UserLoginService, KakaoLoginService
         pDTO.setUser_id(user_id);
         pDTO.setPassword(password);
 
-        UserInfoDto uDTO = new UserInfoDto();
+        UserInfo uDTO;
         uDTO = userLoginMapper.getUserInfo(pDTO);
 
         if(uDTO != null) {
             res = 1;
-            log.info("user_id : " + uDTO.getUser_id());
+            log.info("user_id : " + uDTO.getUserId());
             log.info("user_name : " + uDTO.getUser_name());
         }
         pDTO = null;
@@ -53,7 +62,7 @@ public class UserLoginServiceImpl implements UserLoginService, KakaoLoginService
     }
     //=> 카카오 로그인 시도
     @Override
-    public UserInfoDto kakaoLoginProc(UserInfoDto pDTO) {
+    public UserInfo kakaoLoginProc(UserInfoDto pDTO) {
         log.info(this.getClass().getName() + "카카오로그인 이메일 -> 서비스 로그인 시도");
         return userLoginMapper.getUserInfoKakao(pDTO);
     }

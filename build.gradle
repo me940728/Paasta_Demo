@@ -21,6 +21,9 @@ repositories {
 }
 
 dependencies {
+	/*                    JPA dependency   add : '22.8.28                   */
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	/*======================================================================= */
 	/*                    slf4j dependency   add : '22.8.15                   */
 	implementation('org.slf4j:jcl-over-slf4j')
 	implementation('ch.qos.logback:logback-classic')

@@ -1,9 +1,11 @@
 package RestAPIServer.demo.controller;
 
 import RestAPIServer.demo.data.dto.UserInfoDto;
+import RestAPIServer.demo.data.entity.UserInfo;
 import RestAPIServer.demo.service.UserLoginService;
 import RestAPIServer.demo.util.CmmUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,9 +26,11 @@ import java.util.Map;
 @Slf4j
 @Controller
 public class UserLoginController {
-    @Resource(name = "UserLoginServiceImpl")
-    private UserLoginService userLoginService;
-
+    private final UserLoginService userLoginService;
+    @Autowired
+    UserLoginController(UserLoginService userLoginService){
+        this.userLoginService = userLoginService;
+    }
     /* 단순 로그인 페이지를 리턴  */
     @GetMapping(value = "/loginPage")
     public String loginPage() throws Exception{
@@ -39,18 +42,20 @@ public class UserLoginController {
     @PostMapping(value = "/loginPage/loginProc")
     public String loginProc(HttpServletRequest request, ModelMap model) throws Exception{
         log.info(this.getClass().getName() + ".Login Process Start");
-        /* CmmUtil은 데이터 무결성 1차 처리(공백) 확인을 위한 사용자 정의 클래스 생략해도 무방 */
-        String user_id = CmmUtil.nvl(request.getParameter("user_id"));
-        log.info("===================================user_id : " + user_id);
-
-        String password = CmmUtil.nvl(request.getParameter("password")); //=> 해쉬 처리 해야함
-        log.info("====================================password : " + password);
-
-        int res = userLoginService.getUserInfo(user_id, password);
-        log.info("======================Login Success ? : " + res);
 
         String msg = "Login fail";
         String url = "/";
+
+        /* CmmUtil은 데이터 무결성 1차 처리(공백) 확인을 위한 사용자 정의 클래스 생략해도 무방 */
+        String user_id = CmmUtil.nvl(request.getParameter("user_id"));
+        log.info("==============[controller]=========user_id : " + user_id);
+
+        String password = CmmUtil.nvl(request.getParameter("password")); //=> 해쉬 처리 해야함
+        log.info("==============[controller]==========password : " + password);
+
+        int res = userLoginService.getUserInfo(user_id, password);
+        log.info("===============[controller]=========Login Success ? : " + res);
+
         if(res == 1){ msg = "Login Success"; url = "/index"; }
 
         model.addAttribute("msg", msg);
@@ -88,7 +93,7 @@ public class UserLoginController {
         log.info("카카오 이메일 : " + kakaoEmail);
 
         UserInfoDto pDTO = new UserInfoDto(); // 값 전달 용
-        UserInfoDto rDTO = new UserInfoDto(); // 값 받아오기 용
+        UserInfo rDTO; // 값 받아오기 용
 
         pDTO.setUser_email(kakaoEmail);
         rDTO = userLoginService.kakaoLoginProc(pDTO); // userService에서 MAPPER를 연결하여 값 받아옴
@@ -99,7 +104,7 @@ public class UserLoginController {
         String url = "/loginPage";
 
         if(rDTO != null){
-            user_id = rDTO.getUser_id();
+            user_id = rDTO.getUserId();
             user_name = rDTO.getUser_name();
             log.info("유저 이름 : " + user_id);
             log.info("유저 아이디 : " + user_name);
