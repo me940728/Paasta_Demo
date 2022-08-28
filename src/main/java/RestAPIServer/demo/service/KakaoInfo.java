@@ -15,5 +15,5 @@ public interface KakaoInfo {
     final String FIRENDPROFILELIST_REQ= "https://kapi.kakao.com/v1/api/talk/profile";
     final String FRIENDS = "https://kapi.kakao.com/v1/api/talk/friends"; // 친구 목록 불러오기
     final String SEND_TALK_URL = "https://kapi.kakao.com/v2/api/talk/memo/default/send"; // 톡 보내는 URL
-    //========================
+    //==============================================================================================================================
 }
