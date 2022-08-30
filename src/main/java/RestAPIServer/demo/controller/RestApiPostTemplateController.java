@@ -2,6 +2,7 @@ package RestAPIServer.demo.controller;
 
 import RestAPIServer.demo.data.dto.UserInfoDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -24,11 +25,13 @@ public class RestApiPostTemplateController {
         return "RequestMapping Post";
     }
     /* localhost:8080/api/v1/post-api/member HTTP Body에 JSON으로 값을 보냄 정해진 규칙이 없는 데이터를 받을 때*/
-    @PostMapping(value = "/member")
+    @PostMapping(value = "/member", produces = MediaType.APPLICATION_JSON_VALUE) /* JSON으로 받기 떄문에 */
     public String postMember(@RequestBody Map<String, String> postData){
+        log.info("=============================START");
         StringBuilder sb = new StringBuilder();
+
         postData.entrySet().forEach(map -> {
-            sb.append(map.getKey() + ", " + map.getValue() + "\n");
+            sb.append(map.getKey() + ": " + map.getValue() + "\n");
         });
         return sb.toString();
     }

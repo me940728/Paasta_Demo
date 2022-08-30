@@ -22,6 +22,7 @@ public class RestApiGetTemplateController {
     public String getHello(){
         return "RequestMapping Hello";
     }
+ 
     /* Spring 4.3 버전 이상 Get 방식 */
     @GetMapping("/hello")
     public String getHello_GetMapping(){
@@ -52,7 +53,7 @@ public class RestApiGetTemplateController {
     /* 회원 가입 시 사용자 취및 등 선택 항목을 제외하고 받을 때 사용함 */
     /* localhost:8080/api/v1/test/get-api/request2?key1=val1&key2=val2&key3=val3 요청  */
     @GetMapping("/request2")
-    public String getHello_GetMapping_ReqParam2(Map<String, String> pMap){
+    public String getHello_GetMapping_ReqParam2(@RequestParam Map<String, String> pMap){
         StringBuilder sb = new StringBuilder();
         pMap.entrySet().forEach(map -> {
             sb.append(map.getKey() + ", " + map.getValue() + "\n");
@@ -63,7 +64,8 @@ public class RestApiGetTemplateController {
     /* localhost:8080/api/v1/test/get-api/dto?name=val1&email=val2*/
     @GetMapping("/dto")
     public String getHello_GetMapping_Dto(UserInfoDto userDto){
-        return userDto.toString();
+        return userDto.getUser_id() + " " + userDto.getPassword();
+       // return userDto.toString();
     }
 
 }
