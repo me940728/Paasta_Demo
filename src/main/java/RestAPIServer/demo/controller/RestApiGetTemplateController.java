@@ -22,7 +22,7 @@ public class RestApiGetTemplateController {
     public String getHello(){
         return "RequestMapping Hello";
     }
- 
+
     /* Spring 4.3 버전 이상 Get 방식 */
     @GetMapping("/hello")
     public String getHello_GetMapping(){
