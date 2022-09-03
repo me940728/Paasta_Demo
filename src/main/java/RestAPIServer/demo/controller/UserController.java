@@ -20,23 +20,32 @@ import java.util.Map;
 
 /**
  * @author 최별규
- * @version 1.1 로그인 컨트롤러
- * => 사용자 로그인 컨트롤러
+ * @date 2022.09.03
+ * @version 1.1 사용자(클라이언트) 관련 컨트롤러
+ * => 회원가입, 로그인 관련 컨트롤러
  */
 @Slf4j
 @Controller
-public class UserLoginController {
+@RequestMapping("/user")
+public class UserController {
     private final UserLoginService userLoginService;
     @Autowired
-    UserLoginController(UserLoginService userLoginService){
+    UserController(UserLoginService userLoginService){
         this.userLoginService = userLoginService;
     }
-    /* 단순 로그인 페이지를 리턴  */
-    @GetMapping(value = "/loginPage")
+
+    /**
+     * @author 최별규
+     * @version 1.1 사용자 회원가입 메서드
+     * @param
+     * @return /user/userSingup : String
+     * @date 2022.09.03
+     */
+    @GetMapping(value = "/page")
     public String loginPage() throws Exception{
         log.info(this.getClass().getName() + ".Login Page load Start");
         log.info(this.getClass().getName() + ".Login Page load End");
-        return "/user/userLoginPage";
+        return "/user/userSignup";
     }
     //=> 로그인 처리 프로세스 POST
     @PostMapping(value = "/loginPage/loginProc")
