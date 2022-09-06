@@ -11,4 +11,5 @@ import RestAPIServer.demo.data.entity.UserInfo;
 public interface UserLoginService extends KakaoLoginService {
     int getUserInfo(String user_id, String password); // => 로그인을 위한 메서드
     UserInfo kakaoLoginProc(UserInfoDto pDTO); // => 엑세스토큰으로 받은 이메일로 로그인 시도하는 메세드
+    int checkOverlapForEmail(UserInfoDto pDto); // => 회원가입 간 이메일 중복 체크를 위한 메서드
 }

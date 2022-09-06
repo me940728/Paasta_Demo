@@ -67,5 +67,18 @@ public class RestApiGetTemplateController {
         return userDto.getUser_id() + " " + userDto.getPassword();
        // return userDto.toString();
     }
-
+    /**
+     * @author 최별규
+     * @version 1.1 이메일(PK)로 중복 가입 확인 비동기 메서드
+     * @param int data
+     * @return String
+     * @date 2022.09.03
+     */
+    /* ajax 활용한 실제 테스팅 */
+    @ResponseBody
+    @GetMapping("/info")
+    public int userEmailOverlapCheck(){
+        int res = 0;
+        return res;
+    }
 }

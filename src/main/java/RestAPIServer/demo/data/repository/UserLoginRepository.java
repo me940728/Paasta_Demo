@@ -10,6 +10,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  */                              /* 쥬네릭스에 대상 엔터티와 @Id 필드의 타입을 명시 */
 public interface UserLoginRepository extends JpaRepository<UserInfo, String> {
+    /* 이메일 오버랩 체크 오버러이딩 */
+    UserInfo findByUserEmail(String userEmail) throws Exception;
     /* 로그인 메서드 재정의 */
     UserInfo findByUserIdAndUserPwd(String userId, String password);
 }

@@ -30,6 +30,7 @@
     <link th:href="@{/css/style.css}" rel="stylesheet">
 
     <!-- Jquery Local link -->
+    <script th:src="@{https://code.jquery.com/jquery-3.4.1.min.js}"></script>
    <!-- <script th:src="@{/jquery/jquery-3.6.1.min.js}"> -->
 
 <!--  name은 자바로 가고, id는 자바스크립트로 간다.-->
@@ -70,18 +71,18 @@
       var userEmail = $('#userEmail').val();
       //----------------------------------------------------------------------------------------
       $.ajax({
-         url : '/user/email?userEmail=' + userEmail,
+         url : '/user/info/email?email=' + userEmail,
          type : 'get',
          dataType : 'text',
          success : function (data) {
             if(data == 0){
                $('#email_check').text('이메일을 확인해주세요');
                $('#email_check').css('color', 'red');
-               $('#loginSubmit').attr('disabled', true);
+               $('#doUserRegButton').attr('disabled', true);
             }else if(data == 1){
-               $('#empno_check').text('이미 등록된 이메일입니다.');
-               $('#empno_check').css('color', 'blue');
-               $('#loginSubmit').attr('disabled', false);
+               $('#email_check').text('이미 등록된 이메일입니다.');
+               $('#email_check').css('color', 'blue');
+               $('#doUserRegButton').attr('disabled', false);
             }
          }
       })
@@ -150,7 +151,6 @@
     </div>
 
     <!-- JavaScript Libraries -->
-    <script th:src="@{https://code.jquery.com/jquery-3.4.1.min.js}"></script>
     <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/lib/chart/chart.min.js}"></script>
     <script th:src="@{/lib/easing/easing.min.js}"></script>

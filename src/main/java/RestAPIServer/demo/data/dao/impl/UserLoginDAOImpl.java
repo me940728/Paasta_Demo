@@ -29,4 +29,26 @@ public class UserLoginDAOImpl implements UserLoginDAO {
     public UserInfo getUserInfoKakao(UserInfoDto pDto) {
         return null;
     }
+    /**
+     * @author 최별규
+     * @version 1.1 이메일(PK)로 중복 가입 확인 비동기 메서드
+     * @param UserInfoDto pDto
+     * @return int
+     * @date 2022.09.03
+     */
+    @Override
+    public int checkOverlapForEmail(UserInfoDto pDto) {
+        int res = 0;
+        UserInfo uDto = new UserInfo();
+        try {
+            uDto = userInfoRepository.findByUserEmail(pDto.getUser_email());
+        } catch (Exception e) {
+            if (uDto == null) {
+                uDto = new UserInfo();
+            }
+        } finally {
+            res = uDto.getUserEmail().equals(pDto.getUser_email()) || uDto == null? 1 : 0;
+        }
+        return res;
+    }
 }

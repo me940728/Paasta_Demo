@@ -66,6 +66,20 @@ public class UserLoginServiceImpl implements UserLoginService, KakaoLoginService
         log.info(this.getClass().getName() + "카카오로그인 이메일 -> 서비스 로그인 시도");
         return userLoginMapper.getUserInfoKakao(pDTO);
     }
+    /**
+     * @author 최별규
+     * @version 1.1 이메일(PK)로 중복 가입 확인 비동기 메서드
+     * @param UserInfoDto pDto
+     * @return int
+     * @date 2022.09.03
+     */
+    @Override
+    public int checkOverlapForEmail(UserInfoDto pDto) {
+        int res = 0;
+        res = userLoginMapper.checkOverlapForEmail(pDto);
+        return res;
+    }
+
     // => 카카오 서버로부터 인증코드를 발급받는 메서드
     @Override
     public String getAuthCode() {

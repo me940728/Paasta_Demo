@@ -19,7 +19,7 @@ public class UserInfo {
     @Id /* 테이블의 칼럼과 매핑 모든 엔터티는 ID가 필요함 pk가 유저 이메일 이기 때문에 붙힘*/
     @Column(nullable = false, name="user_email") /* 엔터티 필드에서 @Column은 자동을 생성됨 별도 옶견 줄거 아니면 생략 가능 */
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String user_email; /* 사용자 이메일 */
+    private String userEmail; /* 사용자 이메일 */
     @Column(name="user_id")
     private String userId; /* 사용자 아이디 */
     @Column(name="password")
