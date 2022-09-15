@@ -22,7 +22,7 @@ import java.util.Map;
  * @author 최별규
  * @date 2022.09.03
  * @version 1.1 사용자(클라이언트) 관련 컨트롤러
- * => 회원가입, 로그인 관련 컨트롤러 
+ * => 회원가입, 로그인 관련 컨트롤러
  */
 @Slf4j
 @Controller
