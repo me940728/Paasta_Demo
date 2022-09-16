@@ -10,6 +10,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /* https://springdoc.org/#properties */
+/**
+ * @author 최별규
+ * @date 2022.09.16
+ * @version 1.1 API 명세를 위한 스웨커 셋팅
+ * => 스웨거 메인
+ */
 @Configuration
 public class SwaggerConfiguration {
     @Bean
