@@ -21,7 +21,7 @@ public class RestApiGetController {
     /**
      * @author 최별규
      * @version 1.1 이메일(PK)로 중복 가입 확인 비동기 메서드
-     * @param UserInfoDto pDto
+     * @param UserInfoDto pDto // => error 해결하기
      * @return int
      * @date 2022.09.03
      */
