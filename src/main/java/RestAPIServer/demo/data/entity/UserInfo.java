@@ -9,7 +9,7 @@ import javax.persistence.*;
 /**
  * @author 최별규
  * @version 1.1 사용자 정보 엔터티
- * => ##
+ * => JPA 사용을 위한 엔터티 객체
  */
 @Entity /* 이 클래스가 JPA 엔터티(테이블 매핑 객체) 라는 것을 알리는 에너테이션 */
 @Table(name = "USER_INFO") /* => 클래스 이름과 테이블 이름이 다를 경우 지정하는 에너테이션 */
